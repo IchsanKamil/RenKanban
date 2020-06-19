@@ -15,6 +15,7 @@ const authorization = (req, res, next) => {
                     name: `NOT_AUTHORIZED`,
                 })
             } else {
+                console.log('next autho');
                 next()
             }
         }).catch((err) => {

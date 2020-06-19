@@ -3,11 +3,12 @@ const { verifyToken } = require('../helpers/jwt.js');
 
 const authentication = (req, res, next) => {
     const { token } = req.headers;
-
+    console.log('masuk auth');
     if (!token) next({
         name: `TOKEN_NOT_FOUND`
     })
-
+    // console.log(token,'<<<<');
+    // console.log(verifyToken(token),'<<token');
     try {
         const decode = verifyToken(token);
         req.user = decode;

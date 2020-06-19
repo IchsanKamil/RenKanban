@@ -32,7 +32,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     UserId: DataTypes.INTEGER
-  }, { sequelize });
+  }, { 
+    sequelize, 
+    // hooks: {
+    //   beforeCreate: task => {
+    //     task.due_date = new Date().toDateString()
+    //   }
+    // }
+  });
 
   Task.associate = function(models) {
     // associations can be defined here

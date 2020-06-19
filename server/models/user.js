@@ -1,5 +1,7 @@
 'use strict';
 
+const { encrypt } = require('../helpers/bcrypt.js');
+
 module.exports = (sequelize, DataTypes) => {
   const { Model } = sequelize.Sequelize;
 
@@ -12,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         notEmpty: {
-          message: `Email can't be empty`
+          msg: `Email can't be empty`
         },
         isEmail: {
-          message: `Enter a valid email address`
+          msg: `Enter a valid email address`
         }
       }
     },
@@ -25,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: {
           args: [7, 20],
-          message: `Password must be between 7 & 20 characters`
+          msg: `Password must be between 7 & 20 characters`
         }
       }
     },
@@ -34,7 +36,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize, 
     hooks: {
       beforeCreate: user => {
-        user.organization = `Hacktiv8`
+        user.password = encrypt(user.password);
+        user.organization = `Hacktiv8`;
       }
     }
   });

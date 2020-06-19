@@ -35,9 +35,9 @@ class UserController {
                     email: data.email
                 }
                 return res.status(201).json({
-                        id: data.id,
-                        email: data.email,
-                        token: generateToken(payload)
+                    id: data.id,
+                    email: data.email,
+                    token: generateToken(payload)
                 })
             })
             .catch(err => {
@@ -50,8 +50,8 @@ class UserController {
         const newUser = { email, password };
         User.create(newUser)
             .then((result) => {
-                const { id, email, password } = result;
-                const data = { id, email, password };
+                const { id, email, organization } = result;
+                const data = { id, email, organization };
 
                 res.status(201).json(data);
             }).catch((err) => {
@@ -61,7 +61,6 @@ class UserController {
 
     static login(req, res, next) {
         const { email, password } = req.body;
-
         User.findOne({
             where: { email }
         })
@@ -79,13 +78,25 @@ class UserController {
                             email,
                             token
                         });
-                    } else next({
-                        name: `EMAIL/PASSWORD_NOT_MATCH`
-                    })
-                } else next({
-                    name: `EMAIL/PASSWORD_NOT_EXIST`
-                })
+                    } else throw({ name: `EMAIL/PASSWORD_NOT_MATCH` })
+                } else throw({ name: `EMAIL_NOT_FOUND` })
             }).catch((err) => {
+                next(err);
+            });
+    }
+
+    static destroy(req, res, next) {
+        const { id } = req.params;
+
+        User.destroy({
+            where: { id },
+        })
+            .then(() => {
+                res.status(200).json({
+                    message: `Todo successfully deleted`,
+                })
+            })
+            .catch((err) => {
                 next(err);
             });
     }
