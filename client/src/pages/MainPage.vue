@@ -3,6 +3,8 @@
         <Navbar 
             @logoutDone='logoutDone'
         ></Navbar>
+        <AddTask
+        ></AddTask>
         <div class="container mt-3">
             <Card
                 :tasks="tasks"
@@ -14,12 +16,14 @@
 <script>
 import Navbar from "../components/Navbar"
 import Card from '../components/Card'
+import AddTask from '../components/AddTask'
 
 export default {
     name: "MainPage",
     components: {
         Navbar,
-        Card
+        Card,
+        AddTask
     },
     props: [ 'tasks' ],
     methods: {

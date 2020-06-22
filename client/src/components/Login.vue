@@ -31,6 +31,7 @@
             :renderParams="renderParams"
             :onSuccess="onSuccess"
             :onFailure="onFailure"
+            class="my-2"
           ></GoogleLogin>
         </form>
       </div>
@@ -49,15 +50,16 @@ export default {
       baseUrl: "http://localhost:3000",
       emailLogin: "",
       passwordLogin: "",
+      // userEmail: "",
       params: {
         client_id:
           "146068838972-82gthqrugjeib6alk3024ljjggpri4q4.apps.googleusercontent.com"
       },
       // only needed if you want to render the button with the google ui
       renderParams: {
-        width: 250,
+        width: 150,
         height: 50,
-        longtitle: true
+        // longtitle: true
       }
     };
   },
@@ -93,18 +95,20 @@ export default {
     },
     onSuccess(googleUser) {
       let id_token = googleUser.getAuthResponse().id_token;
-      // console.log(id_token);
+      console.log('<<< google vue');
       axios({
         method: "post",
-        url: baseUrl + "/googleSign",
+        url: this.baseUrl + "/googleSign",
         data: { id_token }
       })
-        .done(data => {
+        .then(data => {
+          console.log('masuk google');
           console.log(data, "<<<<< data googleSignIn");
           localStorage.setItem("token", data.data.token);
+          localStorage.setItem("currentUserEmail", data.data.email);
           this.$emit("loginDone");
         })
-        .fail(err => {
+        .catch(err => {
           console.log("ini error >>>> ", err.responseJSON);
         });
     },

@@ -9,6 +9,7 @@
                         <div class="card-body border-success">
                             <h5 class="card-title text-center"> {{ task.title }} </h5>
                             <p class="card-text">{{ task.category }} </p>
+                            <!-- <p class="card-text">{{ task.due_date }} </p> -->
                         </div>
                     </div>
                     <div class="card-footer">
@@ -85,6 +86,7 @@ export default {
         fetchBackLog() {
             const backLog = []
             this.tasks.forEach(el => {
+                // el.due_date = new Date(el.due_date.toDateString())
                 if (el.category === 'back log') backLog.push(el)
             });
             return backLog

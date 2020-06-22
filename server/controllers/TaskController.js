@@ -1,4 +1,4 @@
-const { Task } = require('../models');
+const { Task, User } = require('../models');
 
 class TaskController {
     static create(req, res, next) {
@@ -18,7 +18,7 @@ class TaskController {
     static findAll(req, res, next) {
         console.log('masuk findAll');
         Task.findAll({
-            where: { UserId: req.user.id },
+            // where: { UserId: req.user.id },
             order: [['due_date', 'ASC']]
         })
             .then((data) => {

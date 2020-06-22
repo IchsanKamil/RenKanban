@@ -5,6 +5,7 @@ const { OAuth2Client } = require('google-auth-library');
 
 class UserController {
     static googleSign(req, res, next) {
+        console.log('masuk google controller');
         let { id_token } = req.body;
         let email;
         const client = new OAuth2Client(process.env.CLIENT_ID);
@@ -34,6 +35,7 @@ class UserController {
                     id: data.id,
                     email: data.email
                 }
+                // console.log(generateToken(payload), '<< payload');
                 return res.status(201).json({
                     id: data.id,
                     email: data.email,

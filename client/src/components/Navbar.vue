@@ -2,7 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="navbar-custom">
       <a class="navbar-brand mr-auto" href="#" onclick="auth()">Kanban</a>
-      <!-- <ul class="navbar-nav">
+      <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -12,13 +12,13 @@
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-          >{{ userEmail }}</a>
+          > {{ userEmail }} </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#" @submit.prevent="logout">Logout</a>
+            <a class="dropdown-item" href="#" @click="logout">Logout</a>
           </div>
         </li>
-      </ul>-->
-      <button class="btn btn-danger" @click="logout">Logout</button>
+      </ul>
+      <!-- <button class="btn btn-danger" @click="logout">Logout</button> -->
     </nav>
   </div>
 </template>
@@ -27,7 +27,9 @@
 export default {
   name: "Navbar",
   data() {
-    return {};
+    return {
+      userEmail: localStorage.currentUserEmail
+    };
   },
   methods: {
     logout() {
