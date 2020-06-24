@@ -18,7 +18,6 @@
           </div>
         </li>
       </ul>
-      <!-- <button class="btn btn-danger" @click="logout">Logout</button> -->
     </nav>
   </div>
 </template>
@@ -34,7 +33,6 @@ export default {
   methods: {
     logout() {
       localStorage.clear();
-      // this.isLogin = false;
       this.$emit('logoutDone')
     }
   }

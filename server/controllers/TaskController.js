@@ -6,11 +6,13 @@ class TaskController {
         const { title, description, category, due_date } = req.body;
         const UserId = req.user.id
         const newTask = { title, description, category, due_date, UserId };
-
+        console.log(newTask, '<< new task');
         Task.create(newTask)
             .then((data) => {
+                console.log('crete task');
                 res.status(201).json(data);
             }).catch((err) => {
+                console.log('failed create');
                 next(err);
             });
     }
@@ -43,14 +45,16 @@ class TaskController {
         const { id } = req.params;
         const { title, description, category, due_date } = req.body;
         const updateTodo = { title, description, category, due_date };
-
+        console.log(updateTodo, id, 'masuk update');
         Task.update(updateTodo, {
             where: { id }
         })
             .then(() => {
+                console.log('then update con');
                 res.status(200).json(updateTodo);
             })
             .catch((err) => {
+                console.log('catch update con');
                 next(err);
             });
     }
@@ -58,17 +62,19 @@ class TaskController {
     static destroy(req, res, next) {
         const { id } = req.params;
         let deleteTodo;
-
+        console.log('masuk delete controller');
         Task.destroy({
             where: { id },
         })
             .then(() => {
+                console.log('delete then con');
                 res.status(200).json({
                     message: `Task successfully deleted`,
                     deleteTodo
                 })
             })
             .catch((err) => {
+                console.log('err delete con');
                 next(err);
             });
     }

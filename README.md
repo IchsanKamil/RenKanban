@@ -8,11 +8,11 @@ Kanban is an application to manage your task list like Trello. This app has :<br
 | /register         | POST          |
 | /login            | POST          |
 | /googleSign       | POST          |
-| /task             | POST          |
-| /task             | GET           |
-| /task/:id         | GET           |
-| /task/:id         | PUT           |
-| /task/:id         | DELETE        |
+| /tasks            | POST          |
+| /tasks            | GET           |
+| /tasks/:id        | GET           |
+| /tasks/:id        | PUT           |
+| /tasks/:id        | DELETE        |
 
 <br>
 
@@ -111,7 +111,7 @@ _Response(500 - Error Server)_
 }
 ```
 ---
-### POST /task
+### POST /tasks
 > Create new task
 
 _Request Header_
@@ -156,7 +156,7 @@ _Response(500 - Error Server)_
 }
 ```
 ---
-### GET /task
+### GET /tasks
 > Show all task
 
 _Request Header_
@@ -177,16 +177,8 @@ _Response (200 - Ok)_
         "UserId": 1,
         "createdAt": "2020-06-13T09:20:35.951Z",
         "updatedAt": "2020-06-13T09:20:35.951Z"
-    },
-    {
-        "id": 2,
-        "title": "task 2",
-        "description": "task description 2",
-        "status": false,
-        "due_date": "2020-06-18",
-        "UserId": 1,
-        "createdAt": "2020-06-13T09:20:35.951Z",
-        "updatedAt": "2020-06-13T09:20:35.951Z"
+    }, {
+        ...
     }
 ]
 ```
@@ -198,7 +190,7 @@ _Response(500 - Error Server)_
 }
 ```
 ---
-### GET /task/:id
+### GET /tasks/:id
 > Show task based on ID
 
 _Request Header_
@@ -234,13 +226,13 @@ _Re sponse(500 - Error Server)_
 }
 ```
 ---
-### PUT /task/:id
+### PUT /tasks/:id
 > Edit task based on ID
 
 _Request Params_
-```json
+```
 {
-    "id": "<your id>"
+    "id": integer
 }
 ```
 _Request Header_
@@ -280,13 +272,13 @@ _Response(500 - Error Server)_
 }
 ```
 ---
-### DELETE /task/:id
+### DELETE /tasks/:id
 > Delete task based on ID
 
 _Request Params_
-```json
+```
 {
-    "id": "<your id>"
+    "id": integer
 }
 ```
 _Request Header_

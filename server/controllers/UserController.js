@@ -7,6 +7,7 @@ class UserController {
     static googleSign(req, res, next) {
         console.log('masuk google controller');
         let { id_token } = req.body;
+        let name;
         let email;
         const client = new OAuth2Client(process.env.CLIENT_ID);
         client.verifyIdToken({
@@ -14,7 +15,10 @@ class UserController {
             audience: process.env.CLIENT_ID
         })
             .then(ticket => {
+                console.log(ticket, '<<< data google');
+
                 email = ticket.getPayload().email;
+                name = ticket.getPayload().name;
 
                 return User.findOne({
                     where: { email }
@@ -38,6 +42,7 @@ class UserController {
                 // console.log(generateToken(payload), '<< payload');
                 return res.status(201).json({
                     id: data.id,
+                    name,
                     email: data.email,
                     token: generateToken(payload)
                 })

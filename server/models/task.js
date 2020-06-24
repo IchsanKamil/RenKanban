@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize, 
     // hooks: {
     //   beforeCreate: task => {
-    //     task.due_date = new Date().toDateString()
+    //     task.due_date = new Date(task.due_date).toDateString()
     //   }
     // }
   });

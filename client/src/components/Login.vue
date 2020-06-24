@@ -50,7 +50,6 @@ export default {
       baseUrl: "http://localhost:3000",
       emailLogin: "",
       passwordLogin: "",
-      // userEmail: "",
       params: {
         client_id:
           "146068838972-82gthqrugjeib6alk3024ljjggpri4q4.apps.googleusercontent.com"
@@ -77,12 +76,10 @@ export default {
         data: { email, password }
       })
         .then(respon => {
-          const { email, token } = respon.data;
+          const { id, email, token } = respon.data;
           localStorage.setItem("token", token);
           localStorage.setItem("currentUserEmail", email);
-          // this.userEmail = localStorage.currentUserEmail;
-          // console.log(localStorage, "<<< localstorage");
-          // this.fetchTasks();
+          localStorage.setItem("currentUserId", id);
           this.$emit("loginDone");
         })
         .catch(err => {
@@ -102,10 +99,10 @@ export default {
         data: { id_token }
       })
         .then(data => {
-          console.log('masuk google');
-          console.log(data, "<<<<< data googleSignIn");
+          console.log(data.data, '<<< google sign in');
           localStorage.setItem("token", data.data.token);
-          localStorage.setItem("currentUserEmail", data.data.email);
+          localStorage.setItem("currentUserEmail", data.data.name);
+          localStorage.setItem("currentUserId", data.data.id);
           this.$emit("loginDone");
         })
         .catch(err => {

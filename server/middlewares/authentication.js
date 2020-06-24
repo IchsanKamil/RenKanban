@@ -12,11 +12,13 @@ const authentication = (req, res, next) => {
     try {
         const decode = verifyToken(token);
         req.user = decode;
-        const { id } = req.user;
+        const { id } = decode;
     
         User.findByPk(id)
             .then((data) => {
-                if (data) next()
+                if (data) {
+                    next()
+                }
                 else next({
                     name: `INVALID_USER`
                 })

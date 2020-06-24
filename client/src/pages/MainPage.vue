@@ -1,14 +1,20 @@
 <template>
-    <div>
+    <div id="bod">
         <Navbar 
             @logoutDone='logoutDone'
         ></Navbar>
         <AddTask
+            @refresh='refresh'
         ></AddTask>
         <div class="container mt-3">
-            <Card
-                :tasks="tasks"
-            ></Card>
+            <div class="row">
+                <Card
+                    v-for="(category, idx) in categories" :key="idx"
+                    :category="category"
+                    :tasks="tasks"
+                    @refresh='refresh'
+                ></Card>
+            </div>
         </div>
     </div>
 </template>
@@ -20,6 +26,11 @@ import AddTask from '../components/AddTask'
 
 export default {
     name: "MainPage",
+    data() {
+        return {
+            categories: ['back log', 'todo', 'done', 'completed']
+        }
+    },
     components: {
         Navbar,
         Card,
@@ -29,6 +40,9 @@ export default {
     methods: {
         logoutDone() {
             this.$emit('logoutDone')
+        },
+        refresh() {
+            this.$emit('refresh')
         }
     },
 }

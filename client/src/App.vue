@@ -7,6 +7,7 @@
     <MainPage 
       v-else
       @logoutDone="logoutDone" 
+      @refresh="loginDone" 
       :tasks="tasks"
     ></MainPage>
   </div>
@@ -42,7 +43,6 @@ export default {
     },
     logoutDone() {
       this.isLogin = false;
-      // this.fetchTasks()
     },
     fetchTasks() {
       axios({
@@ -54,8 +54,6 @@ export default {
       })
         .then(result => {
           this.tasks = result.data;
-          // console.log(result.data,'<< tasks');
-          // console.log(this.tasks, '<< tasks');
         })
         .catch(err => {
           console.log(err, "<< err fecthTask");
@@ -68,7 +66,6 @@ export default {
 
     if (token) {
       this.isLogin = true;
-      // this.userEmail = localStorage.currentUserEmail;
       this.fetchTasks();
     }
   }
