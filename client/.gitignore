@@ -1,5 +1,4 @@
 node_modules
 .cache
-index2.html
-main2.js
-firebase-debug.log
+dist
+.firebase
