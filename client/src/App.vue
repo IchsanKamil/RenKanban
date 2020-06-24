@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       isLogin: false,
       tasks: [],
       userEmail: "",

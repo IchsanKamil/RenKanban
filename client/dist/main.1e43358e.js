@@ -10644,7 +10644,7 @@ var _default = {
   name: "Login",
   data: function data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       emailLogin: "",
       passwordLogin: "",
       params: {
@@ -10910,7 +10910,7 @@ var _default = {
   name: "Register",
   data: function data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       emailRegister: "",
       passwordRegister: ""
     };
@@ -11510,7 +11510,7 @@ var _default = {
   name: "CardTask",
   data: function data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       showModalDelete: false,
       showModalEdit: false,
       showAction: false,
@@ -12175,7 +12175,7 @@ var _default = {
   name: "AddTask",
   data: function data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       title: '',
       description: '',
       category: '',
@@ -12688,7 +12688,7 @@ var _default = {
   },
   data: function data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       isLogin: false,
       tasks: [],
       userEmail: "",

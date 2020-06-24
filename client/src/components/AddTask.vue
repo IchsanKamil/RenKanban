@@ -67,7 +67,7 @@ export default {
     name: "AddTask",
     data() {
         return {
-            baseUrl: "http://localhost:3000",
+            baseUrl: "https://ren-kanban.herokuapp.com",
             title: '',
             description: '',
             category: '',

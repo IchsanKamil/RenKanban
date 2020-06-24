@@ -93,7 +93,7 @@ export default {
     name: "CardTask",
     data() {
         return {
-            baseUrl: "http://localhost:3000",
+            baseUrl: "https://ren-kanban.herokuapp.com",
             showModalDelete: false,
             showModalEdit: false,
             showAction: false,

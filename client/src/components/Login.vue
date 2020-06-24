@@ -47,7 +47,7 @@ export default {
   name: "Login",
   data() {
     return {
-      baseUrl: "http://localhost:3000",
+      baseUrl: "https://ren-kanban.herokuapp.com",
       emailLogin: "",
       passwordLogin: "",
       params: {
